@@ -6,6 +6,7 @@ A configurable Prophet-based forecasting pipeline for SEM time series data, supp
 
 - **Prophet-based forecasting** with external regressors (date, cost)
 - **Multiple granularities**: Daily, weekly (Monday-Sunday), and monthly forecasts
+- **Interactive Streamlit dashboard** for forecast visualization and analysis
 - **Configurable date ranges** for training and forecasting periods
 - **JSON output** with standardized schema
 - **PNG visualizations** with confidence intervals
@@ -34,6 +35,27 @@ A configurable Prophet-based forecasting pipeline for SEM time series data, supp
    ```bash
    python forecast_pipeline.py --config example_config.json
    ```
+
+5. **Launch interactive dashboard:**
+   ```bash
+   python run_dashboard.py
+   ```
+   Or directly with Streamlit:
+   ```bash
+   streamlit run dashboard.py
+   ```
+
+## Dashboard Features
+
+The Streamlit dashboard provides:
+
+- **Interactive forecast visualization** with historical data overlay
+- **Multiple granularity views** (daily, weekly, monthly)
+- **Variable selection** for focused analysis
+- **Summary metrics** with confidence intervals
+- **Run new forecasts** directly from the web interface
+- **Download forecast data** as CSV files
+- **Real-time configuration** and execution
 
 ## Data Requirements
 

@@ -26,6 +26,15 @@ python forecast_pipeline.py --config example_config.json
 python test_pipeline.py
 ```
 
+### Running the Dashboard
+```bash
+# Launch interactive Streamlit dashboard
+python run_dashboard.py
+
+# Or run directly with Streamlit
+streamlit run dashboard.py
+```
+
 ## Architecture
 
 The pipeline follows a modular architecture:
@@ -35,6 +44,8 @@ The pipeline follows a modular architecture:
 - **prophet_forecaster.py**: Prophet models with external regressors (cost, date features)
 - **output_manager.py**: JSON output formatting and PDF visualization generation (single PDF per granularity)
 - **forecast_pipeline.py**: Main orchestration with logging and error handling
+- **dashboard.py**: Interactive Streamlit dashboard for forecast visualization and analysis
+- **run_dashboard.py**: Dashboard launcher script
 - **test_pipeline.py**: Comprehensive test suite with sample data generation
 
 ## Data Flow
@@ -55,6 +66,7 @@ The pipeline follows a modular architecture:
 - **Configurable Seasonality**: Supports yearly/weekly seasonality and trend changepoints
 - **Standardized Output**: JSON schema compliance with required field validation
 - **Mid-Month Intelligence**: Monthly forecasts combine partial historical + forecast data for complete EOM performance
+- **Interactive Dashboard**: Streamlit-based web interface for forecast visualization, analysis, and configuration
 
 ## Target Variables
 
