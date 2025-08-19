@@ -284,12 +284,40 @@ class ForecastDashboard:
         else:  # Run New Forecast
             st.sidebar.subheader("Configuration")
             
-            # Data file
-            data_file = st.sidebar.text_input(
-                "Data File",
-                value="Data/Adobe Forecast Data 8.17.xlsx",
-                help="Path to Excel data file"
+            # Data file upload
+            uploaded_file = st.sidebar.file_uploader(
+                "Upload Excel Data File",
+                type=['xlsx', 'xls'],
+                help="Drag and drop your Excel file here or click to browse"
             )
+            
+            # Alternative: use existing file path
+            use_existing = st.sidebar.checkbox(
+                "Use existing file path instead",
+                value=False,
+                help="Check this to specify a file path instead of uploading"
+            )
+            
+            data_file = None
+            if use_existing:
+                data_file = st.sidebar.text_input(
+                    "Data File Path",
+                    value="Data/Adobe Forecast Data 8.17.xlsx",
+                    help="Path to Excel data file"
+                )
+            elif uploaded_file is not None:
+                # Save uploaded file temporarily
+                import tempfile
+                import shutil
+                
+                # Create a temporary file
+                with tempfile.NamedTemporaryFile(delete=False, suffix='.xlsx') as tmp_file:
+                    shutil.copyfileobj(uploaded_file, tmp_file)
+                    data_file = tmp_file.name
+                
+                st.sidebar.success(f"File uploaded: {uploaded_file.name}")
+            else:
+                st.sidebar.warning("Please upload an Excel file or check 'Use existing file path'")
             
             # Date ranges
             col1, col2 = st.sidebar.columns(2)
@@ -369,6 +397,11 @@ class ForecastDashboard:
         st.markdown("---")
         
         if sidebar_config["mode"] == "run":
+            # Check if data file is provided
+            if not sidebar_config.get("data_file"):
+                st.warning("⚠️ Please upload an Excel file or specify a file path to continue.")
+                return
+                
             if sidebar_config.get("run_forecast"):
                 st.info("🔄 Running forecast...")
                 
@@ -406,6 +439,13 @@ class ForecastDashboard:
                         st.write("**Settings:**")
                         st.write(f"Granularities: {', '.join(sidebar_config['granularities'])}")
                         st.write(f"Variables: {len(sidebar_config['target_columns'])} selected")
+                        
+                        # Show data file status
+                        if sidebar_config.get("data_file"):
+                            file_name = sidebar_config["data_file"].split('/')[-1].split('\\')[-1]
+                            st.write(f"**Data File:** {file_name}")
+                        else:
+                            st.write("**Data File:** Not selected")
             
             return
         
