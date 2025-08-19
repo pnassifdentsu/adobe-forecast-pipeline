@@ -1,0 +1,6 @@
+# This file ensures the Data directory is tracked in Git
+# Place your Excel data files here:
+# - Adobe Forecast Data.xlsx
+# - Other SEM data files
+
+# Note: Actual data files are ignored by .gitignore for privacy/size reasons

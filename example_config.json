@@ -1,0 +1,25 @@
+{
+  "data_file": "Data/Adobe Forecast Data 8.17.xlsx",
+  "train_start": "2023-01-01",
+  "train_end": "2025-08-16",
+  "forecast_start": "2025-08-17",
+  "forecast_end": "2025-09-30",
+  "output_dir": "output",
+  "log_level": "INFO",
+  "granularities": ["daily", "weekly", "monthly"],
+  "target_columns": [
+    "Visits", "NC Visits", "CC Visits", "Mobile Visits",
+    "Orders", "NCOs", "CCOs", "Mobile Orders", 
+    "Call Volume", "Call Orders", "NCO Call Orders", "Mobile Call Orders"
+  ],
+  "regressor_columns": ["date", "cost"],
+  "prophet_params": {
+    "yearly_seasonality": true,
+    "weekly_seasonality": true,
+    "daily_seasonality": false,
+    "seasonality_mode": "multiplicative",
+    "changepoint_prior_scale": 0.05,
+    "seasonality_prior_scale": 10,
+    "interval_width": 0.95
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "data_file": "Data/adobe_forecast_data_local.xlsx",
+  "train_start": "2025-01-01",
+  "train_end": "2025-08-15",
+  "forecast_start": "2025-08-16",
+  "forecast_end": "2025-10-15",
+  "output_dir": "output",
+  "log_level": "INFO",
+  "granularities": ["daily", "weekly", "monthly"],
+  "target_columns": ["Visits", "Orders"],
+  "regressor_columns": ["date", "cost"],
+  "prophet_params": {
+    "yearly_seasonality": false,
+    "weekly_seasonality": true,
+    "daily_seasonality": false,
+    "seasonality_mode": "additive",
+    "changepoint_prior_scale": 0.05,
+    "seasonality_prior_scale": 10,
+    "interval_width": 0.95
+  }
+}
