@@ -1,12 +1,10 @@
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
-import seaborn as sns
 import os
 import logging
 from datetime import datetime
 from typing import Dict, List
-import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 
 class OutputManager:

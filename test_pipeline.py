@@ -6,7 +6,7 @@ import numpy as np
 import os
 import tempfile
 import shutil
-from datetime import datetime, timedelta
+from datetime import datetime
 import json
 
 from config import ForecastConfig
@@ -261,11 +261,11 @@ def run_minimal_pipeline_test():
         results = pipeline.run_pipeline()
         
         if results['success']:
-            print("✅ Minimal pipeline test passed!")
+            print("[PASS] Minimal pipeline test passed!")
             print(f"   Execution time: {results['execution_time']:.2f} seconds")
             print(f"   Output files generated: {len(results['output_files'])}")
         else:
-            print("❌ Minimal pipeline test failed!")
+            print("[FAIL] Minimal pipeline test failed!")
             for error in results.get('errors', []):
                 print(f"   Error: {error}")
         
@@ -275,7 +275,7 @@ def run_minimal_pipeline_test():
         return results['success']
         
     except Exception as e:
-        print(f"❌ Minimal pipeline test failed with exception: {str(e)}")
+        print(f"[FAIL] Minimal pipeline test failed with exception: {str(e)}")
         return False
 
 
@@ -294,6 +294,6 @@ if __name__ == "__main__":
     
     print("\\n" + "=" * 50)
     if pipeline_success:
-        print("🎉 All tests completed! Pipeline is ready to use.")
+        print("[SUCCESS] All tests completed! Pipeline is ready to use.")
     else:
-        print("⚠️  Some tests failed. Please check the implementation.")
+        print("[WARNING] Some tests failed. Please check the implementation.")

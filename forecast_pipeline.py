@@ -136,7 +136,7 @@ class ForecastPipeline:
                 else:
                     viz_files = self.output_manager.generate_all_visualizations(
                         forecasts, granular_train_data, granularity
-                    )                
+                    )
                 all_output_files[granularity] = {
                     'json': json_file,
                     'visualizations': viz_files

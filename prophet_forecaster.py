@@ -2,8 +2,7 @@ import pandas as pd
 import numpy as np
 from prophet import Prophet
 import logging
-from typing import Dict, Tuple, List
-from datetime import datetime, timedelta
+from typing import Dict
 import warnings
 warnings.filterwarnings('ignore', category=UserWarning)
 
